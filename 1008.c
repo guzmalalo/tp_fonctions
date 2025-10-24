@@ -1,7 +1,18 @@
 #include <stdio.h>
 
-float tauxEngagement(int nbLikes, int nbCommentaires, int nbAbonnes ){
-    float taux = (float)(nbLikes + nbCommentaires)/(float)nbAbonnes *100;
+struct influencer
+{
+    int nbLikes ;
+    int nbCommentaires;
+    int nbAbonnes ;
+    short int age;
+};
+
+typedef struct influencer Influencer;
+
+
+float tauxEngagement(Influencer x){
+    float taux = (float)(x.nbLikes + x.nbCommentaires)/(float)x.nbAbonnes *100;
     return (taux>100) ? 100: taux;
 }
 
@@ -15,21 +26,24 @@ void performance(float const taux){
     }
 }
 
+
+
 int main(void) {
-    int nbLikes ;
-    int nbCommentaires;
-    int nbAbonnes ;
+
+    struct influencer trump;
     float taux;
 
+
+
     printf("Rentrez votre nombre d'abonnés: ");
-    scanf("%d", &nbAbonnes);
+    scanf("%d", &trump.nbAbonnes);
     printf("Rentrez votre nombre de likes: ");
-    scanf("%d", &nbLikes);
+    scanf("%d", &trump.nbLikes);
     printf("Rentrez votre nombre de comentaires : ");
-    scanf("%d", &nbCommentaires);
+    scanf("%d", &trump.nbCommentaires);
 
     //procedure
-    taux = tauxEngagement(nbLikes, nbCommentaires, nbAbonnes );
+    taux = tauxEngagement(trump);
 
     printf("\n ----------------\n");
     printf("Nombre d'abonnés : %d \n", nbAbonnes);
